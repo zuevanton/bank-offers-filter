@@ -8,11 +8,14 @@ function App() {
   const [offers, setOffers] = useState(offersData.offers.list)
   const [minInitialPayment, setMinInitialPayment] = useState(10)
   const [propertyType, setPropertyType] = useState('COTTAGE')
+  const [objectType, setObjectType] = useState('all')
 
-  const filteredOffers = offers.filter(offer => offer.minInitialPayment <= minInitialPayment / 100)
-    .filter(offer => {
-      return offer.requirements.find(item => item.key === 'PROPERTY_TYPE')?.value === propertyType
-    })
+  let filteredOffers = offers.filter(offer => offer.minInitialPayment <= minInitialPayment / 100)
+    .filter(offer => offer.requirements.find(item => item.key === 'PROPERTY_TYPE')?.value === propertyType)
+  
+  if(objectType !== 'all') {
+    filteredOffers = filteredOffers.filter(offer => offer.product === objectType)
+  }
 
   return (
     <div className="App">
@@ -36,6 +39,18 @@ function App() {
         }}
         value={propertyType}
         onChange={setPropertyType}
+      />
+
+      <MyRadioButton 
+        title='тип объекта' 
+        values={['all', 'USED', 'NEW']}
+        inputTitles={{
+          all: 'Все',
+          USED: 'Вторичка',
+          NEW: 'Новостройка'
+        }}
+        value={objectType}
+        onChange={setObjectType}
       />
 
       Количество офферов: {filteredOffers.length}

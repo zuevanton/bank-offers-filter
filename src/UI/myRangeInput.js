@@ -1,6 +1,4 @@
-import { useState } from "react";
 const MyRangeInput = ({title, min, max, buttons, unit, onChange, value}) => {
-
 
   return (
     <div className="my-input">

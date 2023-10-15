@@ -2,13 +2,13 @@ const MyRadioButton = ({title, values, value, onChange, inputTitles}) => {
   
   return (
     <div>
-      {title}
+      <h3>{title}</h3>
       {
-        values.map(checkbox => {
+        values.map(radio => {
           return (
-            <label key={checkbox}>
-              <input type='radio' checked={checkbox === value} onChange={() => onChange(checkbox)} />
-              {inputTitles[checkbox]}
+            <label key={radio} style={{display: 'block'}}>
+              <input type='radio' checked={radio === value} onChange={() => onChange(radio)} />
+              {inputTitles[radio]}
             </label>
           )
         })
