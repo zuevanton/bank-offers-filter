@@ -1,4 +1,5 @@
 import './App.css';
+import MyCheckBox from './UI/myCheckBox';
 import MyRadioButton from './UI/myRadioButton';
 import MyRangeInput from './UI/myRangeInput';
 import offersData from './offers';
@@ -9,9 +10,13 @@ function App() {
   const [minInitialPayment, setMinInitialPayment] = useState(10)
   const [propertyType, setPropertyType] = useState('COTTAGE')
   const [objectType, setObjectType] = useState('all')
+  const [term, setTerm] = useState(5)
+  const [banks, setBanks] = useState(['bank-vtb-new', 'bank-alfa', 'bank-delta', 'bank-domrf', 'bank-gpb', 'bank-open'])
 
   let filteredOffers = offers.filter(offer => offer.minInitialPayment <= minInitialPayment / 100)
     .filter(offer => offer.requirements.find(item => item.key === 'PROPERTY_TYPE')?.value === propertyType)
+    .filter(offer => offer.minTerm <= term * 12 && offer.maxTerm >= term * 12)
+    .filter(offer => banks.includes(offer.bankId))
   
   if(objectType !== 'all') {
     filteredOffers = filteredOffers.filter(offer => offer.product === objectType)
@@ -27,6 +32,31 @@ function App() {
         unit='%'
         value={minInitialPayment}
         onChange={setMinInitialPayment}
+      />
+
+      <MyRangeInput 
+        title='Срок кредита'
+        min={5}
+        max={20}
+        buttons={[5, 10, 15, 20]}
+        unit='лет'
+        value={term}
+        onChange={setTerm}
+      />
+
+      <MyCheckBox 
+        title='Банк'
+        values={['bank-vtb-new', 'bank-alfa', 'bank-delta', 'bank-domrf', 'bank-gpb', 'bank-open']}
+        inputTitles={{
+          'bank-vtb-new': 'ВТБ',
+          'bank-alfa': 'Альфа-банк',
+          'bank-delta': 'дельта банк',
+          'bank-domrf': 'Дом рф',
+          'bank-gpb': 'Газпром Банк',
+          'bank-open': 'Банк открытие',
+        }}
+        active={banks}
+        onChange={setBanks}
       />
 
       <MyRadioButton 

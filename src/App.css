@@ -23,3 +23,7 @@
 .buttons button {
   margin-right: 10px;
 }
+
+.label-checkbox {
+  display: block;
+}
