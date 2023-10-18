@@ -97,31 +97,7 @@ function App() {
       })}
       
     </div>
-  );
+  )
 }
-
-// {
-//   bankId: 'bank-vtb-new',   ←←←←←←
-//   offerId: '8b51b98f-2eb8-4950-af5b-270e39c51445',  ←←←←←←←←←←
-//   type: 'MORTGAGE',
-//   product: 'NEW',
-//   creditProgram: '',
-//   rate: 0.122,                ←←←←←←←←←←
-//   minInitialPayment: 0.2,       ←←←←←←←←←←←←
-//   maxInitialPayment: 0.9999,
-//   maxPayment: 266733,
-//   minAmount: 500000,
-//   maxAmount: 25548322,
-//   minTerm: 12,
-//   maxTerm: 360,
-//   requirements: [
-//     {
-//       key: 'PROPERTY_TYPE',
-//       value: 'FLAT'
-//     }
-//   ],
-//   features: [],
-//   expireAt: '2023-01-12T05:54:54.316'
-// },
 
 export default App;
